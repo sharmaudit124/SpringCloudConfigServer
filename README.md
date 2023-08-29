@@ -31,4 +31,6 @@ SpringCloudConfigServer is a demo project that showcases the usage of Spring Boo
 
 1. Clone this repository to your local machine.
 2. Configure your MySQL database and update the database connection details in the `application.properties` file.
-3. Build the project using Maven:
+3. Build the project using Maven:`mvn clean install`.
+4. After building the project, you can run the Spring Boot application using the `java` command.
+`java -jar target/your-application-name.jar`
