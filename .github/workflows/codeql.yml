@@ -10,8 +10,21 @@ on:
     - cron: '43 20 * * 6'
 
 jobs:
+  setup:
+    name: Setup Environment
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+
   analyze:
     name: Analyze
+    needs: setup
     # Runner size impacts CodeQL analysis time. To learn more, please see:
     #   - https://gh.io/recommended-hardware-resources-for-running-codeql
     #   - https://gh.io/supported-runners-and-hardware-resources
@@ -64,11 +77,6 @@ jobs:
     #     echo "Run, Build Application using script"
     #     ./location_of_script_within_repo/buildscript.sh
 
-    - name: Setup Java
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
-    
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
       with:
